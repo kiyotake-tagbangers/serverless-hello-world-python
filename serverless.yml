@@ -27,15 +27,22 @@ provider:
   # $ serverless config credentials --provider aws --key ABCDEFGHIJKLMNOPQRST --secret ABCDEFGHIJKLMNOPQRSTUVWXY/2Y9Tddm+RXneBY --profile serverless-kiyota-sandbox
   profile: serverless-kiyota-sandbox
   region: ap-northeast-1
+
   # this settings use all functions except those that specify a value
-  memorySize: 128
-  timeout: 2
+  # memorySize: 128
+  # timeout: 2
 
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "lambda:*"
+      Resource:
+        - "*"
 #  iamRoleStatements:
 #    - Effect: "Allow"
 #      Action:
@@ -67,15 +74,19 @@ provider:
 functions:
 
   # $ serverless invoke -f hello-short-timeout -l
-  hello-short-timeout:
-    handler: handler.hello
+  # hello-short-timeout:
+    # handler: handler.hello
 
     # $ serverless invoke -f hello -l
-  hello:
-    handler: handler.hello
+  # hello:
+    # handler: handler.hello
     # fallowing values applied
-    memorySize: 512
-    timeout: 2
+    # memorySize: 512
+    # timeout: 2
+
+  # $ serverless deploy function -f hello-iam-example
+  hello-iam-example:
+    handler: handler.hello
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
