@@ -27,6 +27,12 @@ provider:
   # $ serverless config credentials --provider aws --key ABCDEFGHIJKLMNOPQRST --secret ABCDEFGHIJKLMNOPQRSTUVWXY/2Y9Tddm+RXneBY --profile serverless-kiyota-sandbox
   profile: serverless-kiyota-sandbox
   region: ap-northeast-1
+  vpc:
+    securityGroupIds:
+      - sg-0920bb4717054292c # Create before
+    subnetIds:
+      - subnet-77da173f # default
+      - subnet-df2d1284 # default
 
   # this settings use all functions except those that specify a value
   # memorySize: 128
@@ -37,12 +43,12 @@ provider:
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "lambda:*"
-      Resource:
-        - "*"
+  # iamRoleStatements:
+  #   - Effect: "Allow"
+  #     Action:
+  #       - "lambda:*"
+  #     Resource:
+  #       - "*"
 #  iamRoleStatements:
 #    - Effect: "Allow"
 #      Action:
